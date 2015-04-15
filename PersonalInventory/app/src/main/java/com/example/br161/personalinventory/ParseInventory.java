@@ -13,13 +13,14 @@ import java.util.List;
 /**
  * Created by al1694bc on 4/13/2015.
  */
-public class Inventory {
+public class ParseInventory {
 
     private ParseObject inventory;
 
-    public Inventory() {
+    public ParseInventory() {
+
         inventory = new ParseObject("inventory");
-    }//end Inventory method
+    }//end ParseInventory method
 
     public boolean putItem(String name, String description, int quantity) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("inventory");
@@ -27,7 +28,7 @@ public class Inventory {
         try {
             ParseObject object = query.getFirst();
 
-            //nothing in the database
+            //that item name is already in the database
             return false;
         } catch(ParseException e) {
             inventory.put("name", name);
@@ -39,13 +40,17 @@ public class Inventory {
         }//end catch
     }//end putItem method
 
-    private void put() {
-
-    }//end put method
-
     public Item getItem(String name) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("inventory");
+        query.whereEqualTo("name", name);
+        try {
+            ParseObject object = query.getFirst();
 
+            //TODO return item
+        } catch(ParseException e) {
+            return null;
+        }//end catch
 
         return null;
     }//end getItem method
-}//end Inventory class
+}//end ParseInventory class

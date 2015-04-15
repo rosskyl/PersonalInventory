@@ -11,6 +11,8 @@ public class Item {
 
     private int quantity;
 
+    private String category;
+
     public Item(String name, String description, int quantity) {
         this.name = name;
         this.description = description;
@@ -40,4 +42,12 @@ public class Item {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }//end setQuantity method
+
+    public String getCategory() {
+        return category;
+    }//end getCategory method
+
+    public void setCategory(String category) {
+        this.category = category;
+    }//end setCategory method
 }//end Item class

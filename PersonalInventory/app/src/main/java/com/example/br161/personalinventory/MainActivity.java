@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.SaveCallback;
 
@@ -33,8 +32,8 @@ public class MainActivity extends Activity {
             }//end done
         });//end ParsePush.subscribeInBackground
 
-        Inventory inventory = new Inventory();
-        boolean test = inventory.putItem("asdfas ", "", 1);
+        ParseInventory parseInventory = new ParseInventory();
+        boolean test = parseInventory.putItem("asdfas ", "", 1);
         Log.d("check", test + "");
     }//end onCreate method
 }//end MainActivity class
