@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
         });//end ParsePush.subscribeInBackground
 
         ParseInventory parseInventory = new ParseInventory();
-        boolean test = parseInventory.putItem("asdfas ", "", 1);
+        boolean test = parseInventory.putItem("asd fasdfasdfs ", "", 1);
         Log.d("check", test + "");
     }//end onCreate method
 }//end MainActivity class

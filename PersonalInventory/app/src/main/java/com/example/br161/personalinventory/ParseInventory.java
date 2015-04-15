@@ -4,9 +4,11 @@ import android.util.Log;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -20,6 +22,10 @@ public class ParseInventory {
     public ParseInventory() {
 
         inventory = new ParseObject("inventory");
+
+        //TODO uncomment once users are enabled
+        //ParseACL defaultACL = new ParseACL(ParseUser.getCurrentUser());
+        //ParseACL.setDefaultACL(defaultACL, true);
     }//end ParseInventory method
 
     public boolean putItem(String name, String description, int quantity) {
