@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseACL;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -19,18 +20,21 @@ public class ParseInventory {
 
     private ParseObject inventory;
 
+    private ParseUser user;
+
     public ParseInventory() {
 
         inventory = new ParseObject("inventory");
 
-        //TODO uncomment once users are enabled
-        //ParseACL defaultACL = new ParseACL(ParseUser.getCurrentUser());
-        //ParseACL.setDefaultACL(defaultACL, true);
+        user = ParseUser.getCurrentUser();
+
+        inventory.setACL(new ParseACL(user));
     }//end ParseInventory method
 
     public boolean putItem(String name, String description, int quantity) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("inventory");
         query.whereEqualTo("name", name);
+        query.whereEqualTo("user", user);
         try {
             ParseObject object = query.getFirst();
 
@@ -40,6 +44,8 @@ public class ParseInventory {
             inventory.put("name", name);
             inventory.put("description", description);
             inventory.put("quantity", quantity);
+            inventory.put("category", "");
+            inventory.put("user", user);
             inventory.saveInBackground();
 
             return true;
