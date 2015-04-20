@@ -2,6 +2,7 @@ package com.example.br161.personalinventory;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -33,8 +35,6 @@ public class LoginActivity extends Activity {
 
     private TextView tvNewUser;
 
-    private TextView tvContinueAnon;
-
     private ParseUser user;
 
     @Override
@@ -49,7 +49,47 @@ public class LoginActivity extends Activity {
         tvSubmitLogin = (TextView) findViewById(R.id.tv_submit_login);
         tvSubmitNewUser = (TextView) findViewById(R.id.tv_submit_new_user);
         tvNewUser = (TextView) findViewById(R.id.tv_new_user);
-        tvContinueAnon = (TextView) findViewById(R.id.tv_continue_anon);
+
+        tvSubmitLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userName = etUserName.getText().toString();
+                String password = etPassword.getText().toString();
+
+                //check to make sure all fields are filled in
+                if (userName.equals("") || password.equals("")) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Please enter user name and password";
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }//end if
+                else {
+                    ParseUser.logInInBackground(userName, password, new LogInCallback() {
+                        public void done(ParseUser user, ParseException e) {
+                            if (user != null) {
+                                Intent intent = new Intent(LoginActivity.this, MainScreenActivity.class);
+                                startActivity(intent);
+                            }//end if
+                            else {
+                                if (e.getCode() == 101) {
+                                    Context context = getApplicationContext();
+                                    CharSequence text = "Invalid username or password";
+                                    int duration = Toast.LENGTH_LONG;
+
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                }//end if
+                                else {
+                                    Log.d("login", e.getMessage().toString());
+                                }//end else
+                            }//end else
+                        }//end done
+                    });//end ParseUser.logInInBackground
+                }//end else
+            }//end onClick
+        });//end tvSubmitLogin.setOnClickListener
 
         tvSubmitNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +100,7 @@ public class LoginActivity extends Activity {
                 String email = etEmail.getText().toString();
 
                 //check to make sure all fields are filled in
-                if (userName == null || password == null || passwordConfirm == null || email == null) {
+                if (userName.equals("") || password.equals("") || passwordConfirm.equals("") || email.equals("")) {
                     Context context = getApplicationContext();
                     CharSequence text = "Please enter user name and password";
                     int duration = Toast.LENGTH_LONG;
@@ -84,9 +124,8 @@ public class LoginActivity extends Activity {
                     user.signUpInBackground(new SignUpCallback() {
                         public void done(ParseException e) {
                             if (e == null) {
-                                ParseInventory parseInventory = new ParseInventory();
-                                boolean test = parseInventory.putItem("asd fasdfasdfs ", "", 1);
-                                Log.d("check", test + "");
+                                Intent intent = new Intent(LoginActivity.this, MainScreenActivity.class);
+                                startActivity(intent);
                             }//end if
                             else {
                                 Log.d("signup", e.getMessage().toString());
@@ -105,6 +144,7 @@ public class LoginActivity extends Activity {
                 tvSubmitNewUser.setVisibility(View.VISIBLE);
 
                 tvSubmitLogin.setVisibility(View.GONE);
+                tvNewUser.setVisibility(View.GONE);
             }//end onClick
         });//end
     }//end onCreate method

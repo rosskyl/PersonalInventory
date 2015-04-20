@@ -46,7 +46,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
 
-<!--                   IMPORTANT: Change "com.parse.tutorials.pushnotifications" to match your app's package name. -->
+                <!-- IMPORTANT: Change "com.parse.tutorials.pushnotifications" to match your app's package name. -->
                 <category android:name="com.example.br161.personalinventory" />
             </intent-filter>
         </receiver>
@@ -63,6 +63,10 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name=".MainScreenActivity"
+            android:label="@string/title_activity_main_screen" >
         </activity>
     </application>
 

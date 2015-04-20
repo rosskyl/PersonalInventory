@@ -19,14 +19,40 @@ import com.parse.SignUpCallback;
 
 public class MainActivity extends Activity {
 
+    private TextView tvContinueToApp;
 
+    private TextView tvLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tvContinueToApp = (TextView) findViewById(R.id.tv_continue_to_app);
+        tvLogout = (TextView) findViewById(R.id.tv_logout);
 
+        tvContinueToApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkUser();
+            }//end onClick
+        });//end tvContinueToApp.setOnClickListener
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOut();
+
+                Context context = getApplicationContext();
+                CharSequence text = "Successfully Logged Out";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+
+                checkUser();
+            }//end onClick
+        });//tvLogout.setOnClickListener
 
         //needed for using parse
         Parse.enableLocalDatastore(this);
@@ -44,21 +70,26 @@ public class MainActivity extends Activity {
             }//end done
         });//end ParsePush.subscribeInBackground
 
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null) {
-            Log.d("test", "logged in");
-        }//end if
-        else {
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        }//end else
+        checkUser();
 /*
         //sets up an anonymous user automatically
         ParseUser.enableAutomaticUser();
         ParseUser.getCurrentUser().increment("RunCount");
         ParseUser.getCurrentUser().saveInBackground();
 */
-
-
-
     }//end onCreate method
+
+    private void checkUser() {
+
+        //check if user is already logged in
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(MainActivity.this, MainScreenActivity.class);
+            startActivity(intent);
+        }//end if
+        else {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }//end else
+    }//end checkUser method
 }//end MainActivity class
