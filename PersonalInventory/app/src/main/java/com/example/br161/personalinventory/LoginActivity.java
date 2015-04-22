@@ -35,6 +35,8 @@ public class LoginActivity extends Activity {
 
     private TextView tvNewUser;
 
+    private TextView tvForgotPassword;
+
     private ParseUser user;
 
     @Override
@@ -49,6 +51,7 @@ public class LoginActivity extends Activity {
         tvSubmitLogin = (TextView) findViewById(R.id.tv_submit_login);
         tvSubmitNewUser = (TextView) findViewById(R.id.tv_submit_new_user);
         tvNewUser = (TextView) findViewById(R.id.tv_new_user);
+        tvForgotPassword = (TextView) findViewById(R.id.tv_forgot_password);
 
         tvSubmitLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +149,14 @@ public class LoginActivity extends Activity {
                 tvSubmitLogin.setVisibility(View.GONE);
                 tvNewUser.setVisibility(View.GONE);
             }//end onClick
-        });//end
+        });//end tvNewUser.setOnClickListener
+
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }//end onClick
+        });//end tvForgotPassword.setOnClickListener
     }//end onCreate method
 }//end LoginActivity class

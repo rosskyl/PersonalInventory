@@ -19,7 +19,6 @@ public class MainScreenActivity extends ActionBarActivity {
         Log.d("check", test + "");
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
