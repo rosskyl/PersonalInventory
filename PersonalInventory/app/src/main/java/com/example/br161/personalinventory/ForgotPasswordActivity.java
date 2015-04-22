@@ -2,11 +2,8 @@ package com.example.br161.personalinventory;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -44,32 +41,31 @@ public class ForgotPasswordActivity extends Activity {
                     toast.show();
                 }//end if
                 else {
-                    ParseUser.requestPasswordResetInBackground("myemail@example.com",
-                            new RequestPasswordResetCallback() {
-                                public void done(ParseException e) {
-                                    if (e == null) {
-                                        Context context = getApplicationContext();
-                                        CharSequence text = "Email successfully sent";
-                                        int duration = Toast.LENGTH_LONG;
+                    ParseUser.requestPasswordResetInBackground(email, new RequestPasswordResetCallback() {
+                        public void done(ParseException e) {
+                            if (e == null) {
+                                Context context = getApplicationContext();
+                                CharSequence text = "Email successfully sent";
+                                int duration = Toast.LENGTH_LONG;
 
-                                        Toast toast = Toast.makeText(context, text, duration);
-                                        toast.show();
-                                    }//end if
-                                    else {
-                                        if (e.getCode() == 205) {
-                                            Context context = getApplicationContext();
-                                            CharSequence text = "Invalid email";
-                                            int duration = Toast.LENGTH_LONG;
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }//end if
+                            else {
+                                if (e.getCode() == 205) {
+                                    Context context = getApplicationContext();
+                                    CharSequence text = "Invalid email";
+                                    int duration = Toast.LENGTH_LONG;
 
-                                            Toast toast = Toast.makeText(context, text, duration);
-                                            toast.show();
-                                        }//end if
-                                        else {
-                                            Log.d("passwordReset", e.getCode() + "");
-                                        }//end else
-                                    }//end else
-                                }//end done
-                            });//end ParseUser.requestPasswordResetInBackground
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                }//end if
+                                else {
+                                    Log.d("passwordReset", e.getCode() + "");
+                                }//end else
+                            }//end else
+                        }//end done
+                    });//end ParseUser.requestPasswordResetInBackground
                 }//end else
             }//end onClick
         });//tvSubmitForgotPassword.setOnClickListener

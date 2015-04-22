@@ -13,10 +13,13 @@ public class Item {
 
     private String category;
 
-    public Item(String name, String description, int quantity) {
+    private boolean isFavorite;
+
+    public Item(String name, String description, int quantity, String category) {
         this.name = name;
         this.description = description;
         this.quantity = quantity;
+        this.category = category;
     }//end Item method
 
     public String getName() {
@@ -50,4 +53,12 @@ public class Item {
     public void setCategory(String category) {
         this.category = category;
     }//end setCategory method
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }//end isFavorite method
+
+    public void setFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite;
+    }//end setFavorite method
 }//end Item class

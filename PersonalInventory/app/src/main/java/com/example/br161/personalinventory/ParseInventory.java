@@ -45,6 +45,7 @@ public class ParseInventory {
             inventory.put("description", description);
             inventory.put("quantity", quantity);
             inventory.put("category", "");
+            inventory.put("isFavorite", false);
             inventory.put("user", user);
             inventory.saveInBackground();
 
@@ -52,17 +53,24 @@ public class ParseInventory {
         }//end catch
     }//end putItem method
 
-    public Item getItem(String name) {
+    public Item getItem(String tmpName) {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("inventory");
-        query.whereEqualTo("name", name);
+        query.whereEqualTo("name", tmpName);
         try {
             ParseObject object = query.getFirst();
 
-            //TODO return item
+            String name = object.getString("name");
+            String description = object.getString("description");
+            int quantity = object.getInt("quantity");
+            String category = object.getString("category");
+            boolean isFavorite = object.getBoolean("isFavorite");
+
+            Item item = new Item(name, description, quantity, category);
+            item.setFavorite(isFavorite);
+            return item;
         } catch(ParseException e) {
+            Log.d("getItem", e.getMessage().toString());
             return null;
         }//end catch
-
-        return null;
     }//end getItem method
 }//end ParseInventory class
