@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 
         //needed for using parse
         Parse.enableLocalDatastore(this);
-        Parse.initialize(this, "niksKHirkYlRWqK36F6VQhSqUQ7XIfF25sILpM7N", "I4kaV9SnJWnACD2Uc4JkXDTKD1GFPDxSmpKFGkpp");
+        Parse.initialize(this, getString(R.string.application_ID), getString(R.string.client_key));
 
         //needed for push notifications
         ParsePush.subscribeInBackground("", new SaveCallback() {
