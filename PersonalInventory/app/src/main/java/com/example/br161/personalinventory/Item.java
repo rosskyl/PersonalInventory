@@ -20,6 +20,16 @@ public class Item {
         this.description = description;
         this.quantity = quantity;
         this.category = category;
+
+        isFavorite = false;
+    }//end Item method
+
+    public Item(String name, String description, int quantity, String category, boolean isFavorite) {
+        this.name = name;
+        this.description = description;
+        this.quantity = quantity;
+        this.category = category;
+        this.isFavorite = isFavorite;
     }//end Item method
 
     public String getName() {

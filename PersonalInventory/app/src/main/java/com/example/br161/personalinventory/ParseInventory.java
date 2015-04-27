@@ -11,6 +11,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,12 +66,36 @@ public class ParseInventory {
             String category = object.getString("category");
             boolean isFavorite = object.getBoolean("isFavorite");
 
-            Item item = new Item(name, description, quantity, category);
-            item.setFavorite(isFavorite);
+            Item item = new Item(name, description, quantity, category, isFavorite);
             return item;
         } catch(ParseException e) {
             Log.d("getItem", e.getMessage().toString());
             return null;
         }//end catch
     }//end getItem method
+
+    public ArrayList<Item> getAllItems() {
+        ArrayList<Item> items = new ArrayList<Item>();
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("inventory");
+
+        try {
+            List<ParseObject> objects = query.find();
+
+            for (int i = 0; i < objects.size(); i += 1) {
+                String name = objects.get(i).getString("name");
+                String description = objects.get(i).getString("description");
+                int quantity = objects.get(i).getInt("quantity");
+                String category = objects.get(i).getString("category");
+                boolean isFavorite = objects.get(i).getBoolean("isFavorite");
+
+
+                items.add(new Item(name, description, quantity, category, isFavorite));
+            }//end for loop
+        }//end try
+        catch(ParseException e) {
+            Log.d("getAllItems", e.getMessage().toString());
+        }//end catch
+
+        return items;
+    }//end getAllItems method
 }//end ParseInventory class

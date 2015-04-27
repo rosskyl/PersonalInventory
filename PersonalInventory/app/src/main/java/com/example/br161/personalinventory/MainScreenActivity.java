@@ -21,5 +21,9 @@ public class MainScreenActivity extends Activity {
 
         recyclerItems = (RecyclerView) findViewById(R.id.recycler_items);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+        recyclerItems.setLayoutManager(layoutManager);
+
+        recyclerItems.setAdapter(new ItemAdapter());
     }//end onCreate method
 }//end MainScreenActivity class
