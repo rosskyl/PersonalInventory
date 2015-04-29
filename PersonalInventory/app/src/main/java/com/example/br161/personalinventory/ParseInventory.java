@@ -25,11 +25,6 @@ public class ParseInventory {
 
     public ParseInventory() {
 
-        inventory = new ParseObject("inventory");
-
-        user = ParseUser.getCurrentUser();
-
-        inventory.setACL(new ParseACL(user));
     }//end ParseInventory method
 
     public boolean putItem(String name, String description, int quantity) {
@@ -55,18 +50,11 @@ public class ParseInventory {
     }//end putItem method
 
     public Item getItem(String tmpName) {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("inventory");
+        ParseQuery<Item> query = ParseQuery.getQuery("inventory");
         query.whereEqualTo("name", tmpName);
         try {
-            ParseObject object = query.getFirst();
+            Item item = query.getFirst();
 
-            String name = object.getString("name");
-            String description = object.getString("description");
-            int quantity = object.getInt("quantity");
-            String category = object.getString("category");
-            boolean isFavorite = object.getBoolean("isFavorite");
-
-            Item item = new Item(name, description, quantity, category, isFavorite);
             return item;
         } catch(ParseException e) {
             Log.d("getItem", e.getMessage().toString());
@@ -75,27 +63,16 @@ public class ParseInventory {
     }//end getItem method
 
     public ArrayList<Item> getAllItems() {
-        ArrayList<Item> items = new ArrayList<Item>();
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("inventory");
+        ParseQuery<Item> query = ParseQuery.getQuery("inventory");
 
         try {
-            List<ParseObject> objects = query.find();
+            List<Item> objects = query.find();
 
-            for (int i = 0; i < objects.size(); i += 1) {
-                String name = objects.get(i).getString("name");
-                String description = objects.get(i).getString("description");
-                int quantity = objects.get(i).getInt("quantity");
-                String category = objects.get(i).getString("category");
-                boolean isFavorite = objects.get(i).getBoolean("isFavorite");
-
-
-                items.add(new Item(name, description, quantity, category, isFavorite));
-            }//end for loop
+            return (ArrayList<Item>) objects;
         }//end try
         catch(ParseException e) {
             Log.d("getAllItems", e.getMessage().toString());
+            return null;
         }//end catch
-
-        return items;
     }//end getAllItems method
 }//end ParseInventory class

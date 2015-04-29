@@ -19,6 +19,8 @@ public class MainScreenActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+        Item item = new Item("hello", "there", 5, "five");
+
         recyclerItems = (RecyclerView) findViewById(R.id.recycler_items);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 

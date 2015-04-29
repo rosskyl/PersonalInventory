@@ -31,26 +31,30 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_item, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(view, new ViewHolder.ItemClickListener() {
+        ViewHolder.ItemClickListener listener = new ViewHolder.ItemClickListener() {
 
             @Override
             public void onItemClick(View view, int position) {
 
-                //TODO change from LoginActivity class to item view class
                 Intent intent = new Intent(view.getContext(), ItemViewActivity.class);
                 //intent.putExtra("items", items);
-                //intent.putExtra("position", position);
+                intent.putExtra("position", position);
 
                 view.getContext().startActivity(intent);
             }//end onItemClick
-        },
-                new ViewHolder.CheckboxChangedListener() {
-                    @Override
-                    public void onCheckboxChecked(View view, boolean isChecked, int position) {
-                        Log.v("auto", "isChecked : " + isChecked);
-                        Log.v("auto", "position : " + position);
-                    }
-                });//end ViewHolder viewHolder = new ViewHolder
+        };//end ViewHolder.ItemClickListener listener = new ViewHolder.ItemClickListener()
+
+        ViewHolder.CheckboxChangedListener checkListener = new ViewHolder.CheckboxChangedListener() {
+            @Override
+            public void onCheckboxChecked(View view, boolean isChecked, int position) {
+                Log.v("auto", "isChecked : " + isChecked);
+                Log.v("auto", "position : " + position);
+                items.get(position).setFavorite(isChecked);
+                items.get(position).saveInBackground();
+            }//end onCheckBoxChecked
+        };//end ViewHolder.CheckboxChangedListener checkListener = new ViewHolder.CheckboxChangedListener()
+
+        ViewHolder viewHolder = new ViewHolder(view, listener, checkListener);
 
         return viewHolder;
     }//end onCreateViewHolder

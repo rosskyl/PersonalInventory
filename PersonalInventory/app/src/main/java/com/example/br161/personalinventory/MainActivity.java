@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -55,6 +56,7 @@ public class MainActivity extends Activity {
         });//tvLogout.setOnClickListener
 
         //needed for using parse
+        ParseObject.registerSubclass(Item.class);
         Parse.enableLocalDatastore(this);
         Parse.initialize(this, getString(R.string.application_ID), getString(R.string.client_key));
 
@@ -71,12 +73,6 @@ public class MainActivity extends Activity {
         });//end ParsePush.subscribeInBackground
 
         checkUser();
-/*
-        //sets up an anonymous user automatically
-        ParseUser.enableAutomaticUser();
-        ParseUser.getCurrentUser().increment("RunCount");
-        ParseUser.getCurrentUser().saveInBackground();
-*/
     }//end onCreate method
 
     private void checkUser() {
