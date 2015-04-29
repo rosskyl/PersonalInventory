@@ -47,8 +47,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         ViewHolder.CheckboxChangedListener checkListener = new ViewHolder.CheckboxChangedListener() {
             @Override
             public void onCheckboxChecked(View view, boolean isChecked, int position) {
-                Log.v("auto", "isChecked : " + isChecked);
-                Log.v("auto", "position : " + position);
                 items.get(position).setFavorite(isChecked);
                 items.get(position).saveInBackground();
             }//end onCheckBoxChecked

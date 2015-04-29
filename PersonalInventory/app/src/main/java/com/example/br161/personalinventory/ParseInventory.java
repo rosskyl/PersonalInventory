@@ -27,28 +27,6 @@ public class ParseInventory {
 
     }//end ParseInventory method
 
-    public boolean putItem(String name, String description, int quantity) {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("inventory");
-        query.whereEqualTo("name", name);
-        query.whereEqualTo("user", user);
-        try {
-            ParseObject object = query.getFirst();
-
-            //that item name is already in the database
-            return false;
-        } catch(ParseException e) {
-            inventory.put("name", name);
-            inventory.put("description", description);
-            inventory.put("quantity", quantity);
-            inventory.put("category", "");
-            inventory.put("isFavorite", false);
-            inventory.put("user", user);
-            inventory.saveInBackground();
-
-            return true;
-        }//end catch
-    }//end putItem method
-
     public Item getItem(String tmpName) {
         ParseQuery<Item> query = ParseQuery.getQuery("inventory");
         query.whereEqualTo("name", tmpName);
