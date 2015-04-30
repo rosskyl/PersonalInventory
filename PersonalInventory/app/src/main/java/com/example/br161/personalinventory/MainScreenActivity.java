@@ -12,20 +12,10 @@ import android.view.MenuItem;
 
 public class MainScreenActivity extends Activity {
 
-    private RecyclerView recyclerItems;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        Item item = new Item("hello", "there", 5, "five");
-
-        recyclerItems = (RecyclerView) findViewById(R.id.recycler_items);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-
-        recyclerItems.setLayoutManager(layoutManager);
-
-        recyclerItems.setAdapter(new ItemAdapter());
     }//end onCreate method
 }//end MainScreenActivity class
