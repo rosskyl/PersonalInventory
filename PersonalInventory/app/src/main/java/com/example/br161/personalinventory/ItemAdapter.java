@@ -21,10 +21,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
     private ArrayList<Item> items;
 
 
-    public ItemAdapter() {
-        ParseInventory inventory = new ParseInventory();
-
-        items = inventory.getAllItems();
+    public ItemAdapter(ArrayList<Item> items) {
+        this.items = items;
     }//end ItemAdapter method
 
     @Override
