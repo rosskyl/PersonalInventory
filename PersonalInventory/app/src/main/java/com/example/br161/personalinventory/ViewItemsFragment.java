@@ -2,12 +2,16 @@ package com.example.br161.personalinventory;
 
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,6 +21,14 @@ import java.util.ArrayList;
  */
 public class ViewItemsFragment extends Fragment {
 
+    private TextView tvHeadingName;
+
+    private TextView tvHeadingCategory;
+
+    private TextView tvHeadingQuantity;
+
+    private TextView tvHeadingFavorite;
+
     private RecyclerView recyclerItems;
 
     private ArrayList<Item> items;
@@ -24,7 +36,6 @@ public class ViewItemsFragment extends Fragment {
     public ViewItemsFragment() {
         // Required empty public constructor
     }//end ViewItemsFragment method
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,7 +48,7 @@ public class ViewItemsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        items = (ArrayList<Item>) getArguments().get("items");
+        items = ParseInventory.getAllItems();
     }//end onCreate method
 
     @Override
@@ -45,10 +56,17 @@ public class ViewItemsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerItems = (RecyclerView) view.findViewById(R.id.recycler_items);
+        tvHeadingName = (TextView) view.findViewById(R.id.tv_header_name);
+        tvHeadingCategory = (TextView) view.findViewById(R.id.tv_header_category);
+        tvHeadingQuantity = (TextView) view.findViewById(R.id.tv_header_quantity);
+        tvHeadingFavorite = (TextView) view.findViewById(R.id.tv_header_favorite);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
         recyclerItems.setLayoutManager(layoutManager);
 
         recyclerItems.setAdapter(new ItemAdapter(items));
+
+        //TODO add onClickListeners to each textView
     }//end onViewCreated method
 }//end ViewItemsFragment class

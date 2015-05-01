@@ -2,6 +2,9 @@ package com.example.br161.personalinventory;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 
 public class MainScreenActivity extends Activity {
 
@@ -21,10 +26,9 @@ public class MainScreenActivity extends Activity {
 
     private ListView drawerListView;
 
-
     private ActionBarDrawerToggle drawerToggle;
 
-    private int position = 0;
+    private MainScreenFragment mainScreenFragment;
 
     private boolean isDrawerOpen;
 
@@ -42,7 +46,7 @@ public class MainScreenActivity extends Activity {
         drawerListView.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_listview_item, drawerListViewItems));
 
-        // Setting item click listener to mDrawerList
+        // Setting item click listener
         drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int idx, long id) {
@@ -52,44 +56,39 @@ public class MainScreenActivity extends Activity {
             }//end onItemClick
         });//end drawerListView.setOnItemClickListener
 
-        final MainScreenFragment mainScreenFragment = new MainScreenFragment();
+        //create the fragment for the main screen
+        mainScreenFragment = new MainScreenFragment();
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.content_frame, mainScreenFragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
 
+        //Setup a listener for the navigation drawer for when it opens and closes
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
                 null, R.string.drawer_open, R.string.drawer_close) {
 
             public void onDrawerClosed(View view) {
                 mainScreenFragment.updateDrawerInstructions(R.string.drawer_open);
                 isDrawerOpen = false;
-                Log.d("drawer", "closed");
             }//end onDrawerClosed
 
             public void onDrawerOpened(View drawerView) {
                 mainScreenFragment.updateDrawerInstructions(R.string.drawer_close);
                 isDrawerOpen = true;
-                Log.d("drawer", "opened");
             }//end onDrawerOpened
         };//end drawerToggle = new ActionBarDrawerToggle
         drawerLayout.setDrawerListener(drawerToggle);
 
-        updateFragment(-1);
+        updateFragment(0);
     }//end onCreate method
 
     private void updateFragment(int idx) {
-        if (idx == -1) {
-
-        }//end if
-        else if (idx != position) {
-            position = idx;
-        }//end if
-        //TODO actually make update fragment
+        mainScreenFragment.updateFragment(idx);
     }//end updateFragment method
 
     public void updateDrawer() {
+        Log.d("updateDrawer", "updated");
         if (isDrawerOpen)
             drawerLayout.closeDrawer(drawerListView);
         else

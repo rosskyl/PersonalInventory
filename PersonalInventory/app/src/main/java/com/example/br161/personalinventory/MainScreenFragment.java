@@ -1,6 +1,8 @@
 package com.example.br161.personalinventory;
 
 
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -20,6 +22,8 @@ public class MainScreenFragment extends Fragment {
     private TextView tvDrawerInstruction;
 
     private ArrayList<Item> items;//TODO get items
+
+    private ViewItemsFragment viewItemsFragment;
 
     public MainScreenFragment() {
         // Required empty public constructor
@@ -41,9 +45,17 @@ public class MainScreenFragment extends Fragment {
         tvDrawerInstruction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO actually handle click
+                ( (MainScreenActivity) getActivity()).updateDrawer();
             }//end onClick
         });//end tvDrawerInstruction.setOnClickListener
+
+        //create the fragment for the items viewing
+        viewItemsFragment = new ViewItemsFragment();
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, viewItemsFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }//end onViewCreated method
 
     public void updateFragment(int position) {
@@ -52,7 +64,7 @@ public class MainScreenFragment extends Fragment {
 
     public void updateDrawerInstructions(int textID) {
         tvDrawerInstruction.setText(textID);
-        //TODO make this stuff move over
+        //TODO update other paddings
     }//end updateDrawerInstructions method
 
 }//end MainScreenFragment class

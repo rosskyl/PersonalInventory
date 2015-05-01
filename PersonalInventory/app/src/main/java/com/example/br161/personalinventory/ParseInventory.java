@@ -19,15 +19,7 @@ import java.util.List;
  */
 public class ParseInventory {
 
-    private ParseObject inventory;
-
-    private ParseUser user;
-
-    public ParseInventory() {
-
-    }//end ParseInventory method
-
-    public Item getItem(String tmpName) {
+    public static Item getItem(String tmpName) {
         ParseQuery<Item> query = ParseQuery.getQuery("inventory");
         query.whereEqualTo("name", tmpName);
         try {
@@ -40,7 +32,7 @@ public class ParseInventory {
         }//end catch
     }//end getItem method
 
-    public ArrayList<Item> getAllItems() {
+    public static ArrayList<Item> getAllItems() {
         ParseQuery<Item> query = ParseQuery.getQuery("inventory");
 
         try {

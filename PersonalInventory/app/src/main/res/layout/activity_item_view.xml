@@ -18,8 +18,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="right"
+            android:layout_gravity="right"
             android:text="@string/name"/>
 
         <TextView
@@ -27,8 +27,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="left"
+            android:layout_gravity="left"
             android:text="Name" />
 
     </LinearLayout>
@@ -42,8 +42,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="right"
+            android:layout_gravity="right"
             android:text="@string/category"/>
 
         <TextView
@@ -51,8 +51,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="left"
+            android:layout_gravity="left"
             android:text="category" />
 
     </LinearLayout>
@@ -66,8 +66,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="right"
+            android:layout_gravity="right"
             android:text="@string/quantity"/>
 
         <TextView
@@ -75,8 +75,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="left"
+            android:layout_gravity="left"
             android:text="quantity" />
 
     </LinearLayout>
@@ -90,8 +90,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="right"
+            android:layout_gravity="right"
             android:text="@string/description"/>
 
         <TextView
@@ -99,8 +99,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="left"
+            android:layout_gravity="left"
             android:text="description" />
 
     </LinearLayout>
@@ -114,8 +114,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="right"
+            android:layout_gravity="right"
             android:text="@string/favorite"/>
 
         <CheckBox
@@ -123,8 +123,8 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:gravity="center"
-            android:layout_gravity="center"
+            android:gravity="left"
+            android:layout_gravity="left"
             android:text="@string/favorite"/>
 
     </LinearLayout>

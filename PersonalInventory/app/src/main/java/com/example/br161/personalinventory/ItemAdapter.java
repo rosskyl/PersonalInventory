@@ -35,8 +35,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             public void onItemClick(View view, int position) {
 
                 Intent intent = new Intent(view.getContext(), ItemViewActivity.class);
-                //intent.putExtra("items", items);
-                intent.putExtra("position", position);
+                intent.putExtra("name", items.get(position).getName());
+                intent.putExtra("category", items.get(position).getCategory());
+                intent.putExtra("quantity", items.get(position).getQuantity());
+                intent.putExtra("isFavorite", items.get(position).isFavorite());
+                intent.putExtra("description", items.get(position).getDescription());
 
                 view.getContext().startActivity(intent);
             }//end onItemClick
