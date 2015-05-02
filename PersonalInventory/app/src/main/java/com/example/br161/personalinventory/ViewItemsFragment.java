@@ -26,9 +26,9 @@ public class ViewItemsFragment extends Fragment {
 
     private TextView tvHeadingQuantity;
 
-    private TextView tvHeadingFavorite;
-
     private RecyclerView recyclerItems;
+
+    private TextView tvAddItem;
 
     private ItemAdapter adapter;
 
@@ -68,7 +68,7 @@ public class ViewItemsFragment extends Fragment {
         tvHeadingName = (TextView) view.findViewById(R.id.tv_header_name);
         tvHeadingCategory = (TextView) view.findViewById(R.id.tv_header_category);
         tvHeadingQuantity = (TextView) view.findViewById(R.id.tv_header_quantity);
-        tvHeadingFavorite = (TextView) view.findViewById(R.id.tv_header_favorite);
+        tvAddItem = (TextView) view.findViewById(R.id.tv_add_item);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
@@ -131,6 +131,13 @@ public class ViewItemsFragment extends Fragment {
                 }//end else
             }//end onCLick
         });//end tvHeadingCategory.setOnClickListener
+
+        tvAddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO change to add item fragment
+            }//end onClick
+        });//end tvAddItem.setOnClickListener
     }//end onViewCreated method
 
     @Override

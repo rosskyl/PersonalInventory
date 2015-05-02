@@ -1,6 +1,8 @@
 package com.example.br161.personalinventory;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,15 +35,26 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             @Override
             public void onItemClick(View view, int position) {
+                //TODO figure out how to change fragments
+                /*
+                ItemViewFragment fragment = new ItemViewFragment();
 
-                Intent intent = new Intent(view.getContext(), ItemViewActivity.class);
-                intent.putExtra("name", items.get(position).getName());
-                intent.putExtra("category", items.get(position).getCategory());
-                intent.putExtra("quantity", items.get(position).getQuantity());
-                intent.putExtra("isFavorite", items.get(position).isFavorite());
-                intent.putExtra("description", items.get(position).getDescription());
+                Bundle bundle = new Bundle();
 
-                view.getContext().startActivity(intent);
+                bundle.putString("name", items.get(position).getName());
+                bundle.putString("category", items.get(position).getCategory());
+                bundle.putInt("quantity", items.get(position).getQuantity());
+                bundle.putBoolean("isFavorite", items.get(position).isFavorite());
+                bundle.putString("description", items.get(position).getDescription());
+
+                fragment.setArguments(bundle);
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content_frame, fragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+                 */
             }//end onItemClick
         };//end ViewHolder.ItemClickListener listener = new ViewHolder.ItemClickListener()
 
