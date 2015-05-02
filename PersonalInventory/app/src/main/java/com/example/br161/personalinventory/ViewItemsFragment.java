@@ -2,7 +2,6 @@ package com.example.br161.personalinventory;
 
 
 import android.app.Fragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -31,7 +30,11 @@ public class ViewItemsFragment extends Fragment {
 
     private RecyclerView recyclerItems;
 
+    private ItemAdapter adapter;
+
     private ArrayList<Item> items;
+
+    private int[] sort;
 
     public ViewItemsFragment() {
         // Required empty public constructor
@@ -49,6 +52,12 @@ public class ViewItemsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         items = ParseInventory.getAllItems();
+        Collections.sort(items, new ItemNameComparator());
+
+        sort = new int[3];//0 if not sorted, 1 if sorted ascending and -1 if descending
+        sort[0] = 1;//sorted by name
+        sort[1] = 0;//sorted by quantity
+        sort[2] = 0;//sorted by category
     }//end onCreate method
 
     @Override
@@ -65,8 +74,71 @@ public class ViewItemsFragment extends Fragment {
 
         recyclerItems.setLayoutManager(layoutManager);
 
-        recyclerItems.setAdapter(new ItemAdapter(items));
+        adapter = new ItemAdapter(items);
+        recyclerItems.setAdapter(adapter);
 
-        //TODO add onClickListeners to each textView
+        //TODO setup arrows after each heading to know which way it is sorted
+        tvHeadingName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sort[0] == 1) {
+                    Collections.sort(items, Collections.reverseOrder(new ItemNameComparator()));
+                    adapter.notifyDataSetChanged();
+                    sort[0] = -1;
+                }//end if
+                else {
+                    Collections.sort(items, new ItemNameComparator());
+                    adapter.notifyDataSetChanged();
+                    sort[0] = 1;
+                    sort[1] = 0;
+                    sort[2] = 0;
+                }//end else
+            }//end onCLick
+        });//end tvHeadingName.setOnClickListener
+
+        tvHeadingQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sort[1] == 1) {
+                    Collections.sort(items, Collections.reverseOrder(new ItemQuantityComparator()));
+                    adapter.notifyDataSetChanged();
+                    sort[1] = -1;
+                }//end if
+                else {
+                    Collections.sort(items, new ItemQuantityComparator());
+                    adapter.notifyDataSetChanged();
+                    sort[0] = 0;
+                    sort[1] = 1;
+                    sort[2] = 0;
+                }//end else
+            }//end onCLick
+        });//end tvHeadingQuantity.setOnClickListener
+
+        tvHeadingCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sort[2] == 1) {
+                    Collections.sort(items, Collections.reverseOrder(new ItemCategoryComparator()));
+                    adapter.notifyDataSetChanged();
+                    sort[2] = -1;
+                }//end if
+                else {
+                    Collections.sort(items, new ItemCategoryComparator());
+                    adapter.notifyDataSetChanged();
+                    sort[0] = 0;
+                    sort[1] = 0;
+                    sort[2] = 1;
+                }//end else
+            }//end onCLick
+        });//end tvHeadingCategory.setOnClickListener
     }//end onViewCreated method
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("ViewItemsFragment", "onDestroy");
+        for (Item item : items) {
+            item.saveInBackground();
+        }//end for loop
+    }//end onDestroy method
 }//end ViewItemsFragment class
