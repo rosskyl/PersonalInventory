@@ -2,6 +2,7 @@ package com.example.br161.personalinventory;
 
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -10,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
@@ -20,8 +24,6 @@ import java.util.ArrayList;
 public class MainScreenFragment extends Fragment {
 
     private TextView tvDrawerInstruction;
-
-    private ArrayList<Item> items;//TODO get items
 
     private ViewItemsFragment viewItemsFragment;
 
@@ -58,8 +60,37 @@ public class MainScreenFragment extends Fragment {
                 .commit();
     }//end onViewCreated method
 
-    public void updateFragment(int position) {
-        //TODO actually switch fragments here
+    public void updateFragment(String option) {
+        if (option.equalsIgnoreCase("logout")) {
+            ParseUser.logOut();
+
+            Context context = getActivity().getApplicationContext();
+            CharSequence text = "Successfully Logged Out";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }//end if
+        else if (option.equalsIgnoreCase("view inventory")) {
+            viewItemsFragment = new ViewItemsFragment();
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_fragment_container, viewItemsFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit();
+        }//end else if
+        else if (option.equalsIgnoreCase("add item")) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_fragment_container, new AddItemFragment())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commit();
+        }//end else if
     }//end updateFragment method
 
     public void updateDrawerInstructions(int textID) {

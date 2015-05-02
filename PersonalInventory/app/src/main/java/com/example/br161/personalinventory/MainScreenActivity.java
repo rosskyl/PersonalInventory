@@ -84,7 +84,7 @@ public class MainScreenActivity extends Activity {
     }//end onCreate method
 
     private void updateFragment(int idx) {
-        mainScreenFragment.updateFragment(idx);
+        mainScreenFragment.updateFragment(drawerListViewItems[idx]);
     }//end updateFragment method
 
     public void updateDrawer() {
