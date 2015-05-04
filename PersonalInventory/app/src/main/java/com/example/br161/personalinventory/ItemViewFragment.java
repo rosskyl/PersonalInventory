@@ -1,6 +1,7 @@
 package com.example.br161.personalinventory;
 
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -29,9 +32,18 @@ public class ItemViewFragment extends Fragment {
 
     private TextView tvDelete;
 
+    private ArrayList<Item> items;
+
     public ItemViewFragment() {
         // Required empty public constructor
     }//end ItemViewFragment method
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        items = ParseInventory.getAllItems();
+    }//end onCreate method
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,12 +64,37 @@ public class ItemViewFragment extends Fragment {
         tvEdit = (TextView) view.findViewById(R.id.tv_edit);
         tvDelete = (TextView) view.findViewById(R.id.tv_delete);
 
-        tvName.setText(getArguments().getString("name"));
-        tvQuantity.setText(getArguments().getString("quantity") + "");
-        tvCategory.setText(getArguments().getString("category"));
-        tvDescription.setText(getArguments().getString("description"));
-        cbFavorite.setChecked(getArguments().getBoolean("isFavorite"));
+        tvName.setText(items.get(getArguments().getInt("position")).getName());
+        tvQuantity.setText(items.get(getArguments().getInt("position")).getQuantity() + "");
+        tvCategory.setText(items.get(getArguments().getInt("position")).getCategory());
+        tvDescription.setText(items.get(getArguments().getInt("position")).getDescription());
+        cbFavorite.setChecked(items.get(getArguments().getInt("position")).isFavorite());
 
-        //TODO add onClickListener to both buttons
+        tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO create popup
+            }//end onClick
+        });//end tvDelete.setOnClickListener
+
+        tvEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditItemFragment fragment = new EditItemFragment();
+
+                Bundle bundle = new Bundle();
+
+                bundle.putSerializable("item", items.get(getArguments().getInt("position")));
+
+                fragment.setArguments(bundle);
+
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_fragment_container, fragment)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack("")
+                        .commit();
+            }//end onClick
+        });//end tvEdit.setOnClickListener
     }//end onViewCreated
 }//end ItemViewFragment class

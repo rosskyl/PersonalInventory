@@ -1,5 +1,6 @@
 package com.example.br161.personalinventory;
 
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,9 +23,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     private ArrayList<Item> items;
 
+    private FragmentManager fragmentManager;
 
-    public ItemAdapter(ArrayList<Item> items) {
+    public ItemAdapter(ArrayList<Item> items, FragmentManager fragmentManager) {
         this.items = items;
+        this.fragmentManager = fragmentManager;
     }//end ItemAdapter method
 
     @Override
@@ -35,26 +38,22 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
             @Override
             public void onItemClick(View view, int position) {
-                //TODO figure out how to change fragments
-                /*
+
                 ItemViewFragment fragment = new ItemViewFragment();
 
                 Bundle bundle = new Bundle();
 
-                bundle.putString("name", items.get(position).getName());
-                bundle.putString("category", items.get(position).getCategory());
-                bundle.putInt("quantity", items.get(position).getQuantity());
-                bundle.putBoolean("isFavorite", items.get(position).isFavorite());
-                bundle.putString("description", items.get(position).getDescription());
+                //TODO change to put the item
+                bundle.putInt("position", position);
 
                 fragment.setArguments(bundle);
 
-                getFragmentManager()
+                fragmentManager
                         .beginTransaction()
-                        .replace(R.id.content_frame, fragment)
+                        .replace(R.id.main_fragment_container, fragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack("")
                         .commit();
-                 */
             }//end onItemClick
         };//end ViewHolder.ItemClickListener listener = new ViewHolder.ItemClickListener()
 

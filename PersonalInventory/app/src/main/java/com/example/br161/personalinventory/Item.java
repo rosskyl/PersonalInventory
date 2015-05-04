@@ -5,11 +5,13 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.io.Serializable;
+
 /**
  * Created by al1694bc on 4/13/2015.
  */
 @ParseClassName("inventory")
-public class Item extends ParseObject {
+public class Item extends ParseObject implements Serializable {
 
     private ParseUser user;
 

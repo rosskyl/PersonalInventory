@@ -88,7 +88,6 @@ public class MainScreenActivity extends Activity {
     }//end updateFragment method
 
     public void updateDrawer() {
-        Log.d("updateDrawer", "updated");
         if (isDrawerOpen)
             drawerLayout.closeDrawer(drawerListView);
         else

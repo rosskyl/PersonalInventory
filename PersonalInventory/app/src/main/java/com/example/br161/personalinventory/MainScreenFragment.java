@@ -82,6 +82,7 @@ public class MainScreenFragment extends Fragment {
                     .beginTransaction()
                     .replace(R.id.main_fragment_container, viewItemsFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack("")
                     .commit();
         }//end else if
         else if (option.equalsIgnoreCase("add item")) {
@@ -89,6 +90,7 @@ public class MainScreenFragment extends Fragment {
                     .beginTransaction()
                     .replace(R.id.main_fragment_container, new AddItemFragment())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack("")
                     .commit();
         }//end else if
     }//end updateFragment method

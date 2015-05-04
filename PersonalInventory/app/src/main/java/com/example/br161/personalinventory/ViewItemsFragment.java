@@ -2,16 +2,13 @@ package com.example.br161.personalinventory;
 
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -72,7 +69,7 @@ public class ViewItemsFragment extends Fragment {
 
         recyclerItems.setLayoutManager(layoutManager);
 
-        adapter = new ItemAdapter(items);
+        adapter = new ItemAdapter(items, getFragmentManager());
         recyclerItems.setAdapter(adapter);
 
         //TODO setup arrows after each heading to know which way it is sorted
@@ -131,12 +128,4 @@ public class ViewItemsFragment extends Fragment {
         });//end tvHeadingCategory.setOnClickListener
     }//end onViewCreated method
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d("ViewItemsFragment", "onDestroy");
-        for (Item item : items) {
-            item.saveInBackground();
-        }//end for loop
-    }//end onDestroy method
 }//end ViewItemsFragment class

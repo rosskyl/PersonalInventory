@@ -16,15 +16,15 @@ public class AddItemFragment extends Fragment {
 
     public AddItemFragment() {
         // Required empty public constructor
-    }
-
+    }//end AddItemFragment method
+//TODO actually finish this
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_item, container, false);
-    }
+    }//end onCreateView method
 
 
-}
+}//end AddItemFragment class
