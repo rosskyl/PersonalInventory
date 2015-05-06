@@ -21,6 +21,7 @@
     <string name="button_quantity_add_1">Add 1</string>
     <string name="button_quantity_subtract_1">Subtract 1</string>
     <string name="button_cancel">Cancel</string>
+    <string name="button_confirm">Confirm</string>
 
     <string name="hint_user_name">User name</string>
     <string name="hint_password">Password</string>
@@ -49,5 +50,10 @@
 
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="dialog_delete">Are you sure you want to delete</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

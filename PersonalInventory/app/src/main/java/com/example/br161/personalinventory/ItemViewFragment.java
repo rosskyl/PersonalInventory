@@ -73,7 +73,11 @@ public class ItemViewFragment extends Fragment {
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO create popup
+                ConfirmDeleteItemFragment fragment = new ConfirmDeleteItemFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("item", item);
+                fragment.setArguments(bundle);
+                fragment.show(getFragmentManager(), "Tag");
             }//end onClick
         });//end tvDelete.setOnClickListener
 
