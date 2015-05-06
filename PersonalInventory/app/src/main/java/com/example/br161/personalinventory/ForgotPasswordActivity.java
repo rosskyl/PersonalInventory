@@ -53,6 +53,9 @@ public class ForgotPasswordActivity extends Activity {
 
                                 Toast toast = Toast.makeText(context, text, duration);
                                 toast.show();
+
+                                Intent intent = new Intent(activity, LoginActivity.class);
+                                startActivity(intent);
                             }//end if
                             else {
                                 if (e.getCode() == 205) {
@@ -62,11 +65,6 @@ public class ForgotPasswordActivity extends Activity {
 
                                     Toast toast = Toast.makeText(context, text, duration);
                                     toast.show();
-
-                                    Intent intent = new Intent(activity, LoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
                                 }//end if
                                 else {
                                     Log.d("passwordReset", e.getCode() + "");

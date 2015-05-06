@@ -57,7 +57,6 @@ public class MainActivity extends Activity {
 
         //needed for using parse
         ParseObject.registerSubclass(Item.class);
-        Parse.enableLocalDatastore(this);
         Parse.initialize(this, getString(R.string.application_ID), getString(R.string.client_key));
 
         //needed for push notifications

@@ -87,6 +87,7 @@ public class LoginActivity extends Activity {
                                 }//end if
                                 else {
                                     Log.d("login", e.getMessage().toString());
+                                    Log.d("login", e.getCode() + "");
                                 }//end else
                             }//end else
                         }//end done
@@ -124,6 +125,7 @@ public class LoginActivity extends Activity {
                     user = new ParseUser();
                     user.setUsername(userName);
                     user.setPassword(password);
+                    user.setEmail(email);
 
                     user.signUpInBackground(new SignUpCallback() {
                         public void done(ParseException e) {
@@ -132,7 +134,26 @@ public class LoginActivity extends Activity {
                                 startActivity(intent);
                             }//end if
                             else {
-                                Log.d("signup", e.getMessage().toString());
+                                if (e.getCode() == 202) {
+                                    Context context = getApplicationContext();
+                                    CharSequence text = "Username already taken";
+                                    int duration = Toast.LENGTH_LONG;
+
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                }//end if
+                                else if (e.getCode() == 203) {
+                                    Context context = getApplicationContext();
+                                    CharSequence text = "Email already taken";
+                                    int duration = Toast.LENGTH_LONG;
+
+                                    Toast toast = Toast.makeText(context, text, duration);
+                                    toast.show();
+                                }//end else if
+                                else {
+                                    Log.d("signup", e.getMessage().toString());
+                                    Log.d("signup", e.getCode() + "");
+                                }//end else
                             }//end else
                         }//end done
                     });//end user.signUpInBackground
@@ -149,6 +170,7 @@ public class LoginActivity extends Activity {
 
                 tvSubmitLogin.setVisibility(View.GONE);
                 tvNewUser.setVisibility(View.GONE);
+                tvForgotPassword.setVisibility(View.GONE);
             }//end onClick
         });//end tvNewUser.setOnClickListener
 
