@@ -117,13 +117,6 @@ public class EditItemFragment extends Fragment {
                 item.setQuantity(quantity);
                 item.setFavorite(isFavorite);
 
-                item.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        Log.d("save", "saved");
-                    }//end done
-                });//end item.saveInBackground
-
                 changeFragmentToViewItems();
             }//end onClick
         });//end tvButtonSubmit.setOnClickListener
