@@ -96,7 +96,6 @@ public class ItemViewFragment extends Fragment {
                         .beginTransaction()
                         .replace(R.id.main_fragment_container, fragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack("")
                         .commit();
             }//end onClick
         });//end tvEdit.setOnClickListener

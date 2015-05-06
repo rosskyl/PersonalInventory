@@ -2,12 +2,16 @@ package com.example.br161.personalinventory;
 
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +29,8 @@ public class ViewItemsFragment extends Fragment {
     private TextView tvHeadingQuantity;
 
     private RecyclerView recyclerItems;
+
+    private ProgressBar progressBar;
 
     private ItemAdapter adapter;
 
@@ -47,13 +53,12 @@ public class ViewItemsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        items = ParseInventory.getAllItems();
-        Collections.sort(items, new ItemNameComparator());
-
         sort = new int[3];//0 if not sorted, 1 if sorted ascending and -1 if descending
-        sort[0] = 1;//sorted by name
-        sort[1] = 0;//sorted by quantity
-        sort[2] = 0;//sorted by category
+
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        sort[0] = preferences.getInt("nameSort", 1);//sorted by name
+        sort[1] = preferences.getInt("quantitySort", 0);//sorted by quantity
+        sort[2] = preferences.getInt("categorySort", 0);//sorted by category
     }//end onCreate method
 
     @Override
@@ -64,14 +69,26 @@ public class ViewItemsFragment extends Fragment {
         tvHeadingName = (TextView) view.findViewById(R.id.tv_header_name);
         tvHeadingCategory = (TextView) view.findViewById(R.id.tv_header_category);
         tvHeadingQuantity = (TextView) view.findViewById(R.id.tv_header_quantity);
+        progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        new LoadItemsTask().execute();
+    }//end onViewCreated method
 
-        recyclerItems.setLayoutManager(layoutManager);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
-        adapter = new ItemAdapter(items, getFragmentManager());
-        recyclerItems.setAdapter(adapter);
+        SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
 
+        editor.putInt("nameSort", sort[0]);
+        editor.putInt("quantitySort", sort[1]);
+        editor.putInt("categorySort", sort[2]);
+
+        editor.commit();
+    }//end onDestroy method
+
+    private void setUpOnClickListeners() {
         //TODO setup arrows after each heading to know which way it is sorted
         tvHeadingName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +143,46 @@ public class ViewItemsFragment extends Fragment {
                 }//end else
             }//end onCLick
         });//end tvHeadingCategory.setOnClickListener
-    }//end onViewCreated method
+    }//end setUpOnClickListeners method
+
+    class LoadItemsTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            items = ParseInventory.getAllItems();
+            if (sort[0] == 1)
+                Collections.sort(items, new ItemNameComparator());
+            else if (sort[0] == -1)
+                Collections.sort(items, Collections.reverseOrder(new ItemNameComparator()));
+            else if (sort[1] == 1)
+                Collections.sort(items, new ItemQuantityComparator());
+            else if (sort[1] == -1)
+                Collections.sort(items, Collections.reverseOrder(new ItemQuantityComparator()));
+            else if (sort[2] == 1)
+                Collections.sort(items, new ItemCategoryComparator());
+            else if (sort[2] == -1)
+                Collections.sort(items, Collections.reverseOrder(new ItemCategoryComparator()));
+
+
+            return null;
+        }//end doInBackground method
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+
+            recyclerItems.setLayoutManager(layoutManager);
+
+            adapter = new ItemAdapter(items, getFragmentManager());
+            recyclerItems.setAdapter(adapter);
+
+            recyclerItems.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+
+            setUpOnClickListeners();
+        }//end onPostExecute method
+    }//end LoadItemsTask inner class
 
 }//end ViewItemsFragment class

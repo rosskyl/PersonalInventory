@@ -14,8 +14,9 @@
 
         <TextView
             android:id="@+id/tv_drawer_instruction"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left"
             android:text="@string/drawer_open"/>
 
     </LinearLayout>

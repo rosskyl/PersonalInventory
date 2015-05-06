@@ -51,7 +51,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                         .beginTransaction()
                         .replace(R.id.main_fragment_container, fragment)
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .addToBackStack("")
                         .commit();
             }//end onItemClick
         };//end ViewHolder.ItemClickListener listener = new ViewHolder.ItemClickListener()

@@ -127,7 +127,6 @@ public class EditItemFragment extends Fragment {
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, new ViewItemsFragment())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack("")
                 .commit();
     }//end changeFragmentToViewItems method
 }//end EditItemFragment class

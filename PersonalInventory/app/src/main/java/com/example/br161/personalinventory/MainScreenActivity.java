@@ -69,12 +69,12 @@ public class MainScreenActivity extends Activity {
                 null, R.string.drawer_open, R.string.drawer_close) {
 
             public void onDrawerClosed(View view) {
-                mainScreenFragment.updateDrawerInstructions(R.string.drawer_open);
+                mainScreenFragment.updateDrawerInstructions(getString(R.string.drawer_open));
                 isDrawerOpen = false;
             }//end onDrawerClosed
 
             public void onDrawerOpened(View drawerView) {
-                mainScreenFragment.updateDrawerInstructions(R.string.drawer_close);
+                mainScreenFragment.updateDrawerInstructions(getString(R.string.drawer_close));
                 isDrawerOpen = true;
             }//end onDrawerOpened
         };//end drawerToggle = new ActionBarDrawerToggle

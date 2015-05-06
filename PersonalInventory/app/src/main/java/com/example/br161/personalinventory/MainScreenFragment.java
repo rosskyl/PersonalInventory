@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,6 @@ public class MainScreenFragment extends Fragment {
                     .beginTransaction()
                     .replace(R.id.main_fragment_container, viewItemsFragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack("")
                     .commit();
         }//end else if
         else if (option.equalsIgnoreCase("add item")) {
@@ -90,13 +90,21 @@ public class MainScreenFragment extends Fragment {
                     .beginTransaction()
                     .replace(R.id.main_fragment_container, new AddItemFragment())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack("")
                     .commit();
         }//end else if
     }//end updateFragment method
 
-    public void updateDrawerInstructions(int textID) {
-        tvDrawerInstruction.setText(textID);
+    public void updateDrawerInstructions(String text) {
+        if (text.equals(getString(R.string.drawer_close))) {
+            tvDrawerInstruction.setText(text);
+            tvDrawerInstruction.setGravity(Gravity.RIGHT);
+        }//end if
+        else if (text.equals(getString(R.string.drawer_open))) {
+            tvDrawerInstruction.setText(text);
+            tvDrawerInstruction.setGravity(Gravity.LEFT);
+        }//end if
+
+
         //TODO update other paddings
     }//end updateDrawerInstructions method
 

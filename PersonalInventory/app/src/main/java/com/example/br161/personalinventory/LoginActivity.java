@@ -1,6 +1,7 @@
 package com.example.br161.personalinventory;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
