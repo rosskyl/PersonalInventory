@@ -1,14 +1,19 @@
 package com.example.br161.personalinventory;
 
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.parse.ParseException;
+import com.parse.SaveCallback;
 
 
 /**
@@ -69,6 +74,67 @@ public class EditItemFragment extends Fragment {
         tvButtonSubmit = (TextView) view.findViewById(R.id.tv_button_submit_edit);
 
         etEditName.setText(item.getName());
-        //TODO finish
-    }//end onViewCreated;
+		etEditCategory.setText(item.getCategory());
+		etEditQuantity.setText(item.getQuantity() + "");
+		etEditDescription.setText(item.getDescription());
+        cbEditIsFavorite.setChecked(item.isFavorite());
+
+        tvButtonQuantityAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQuantity = Integer.parseInt(etEditQuantity.getText().toString());
+                etEditQuantity.setText((currentQuantity + 1) + "");
+            }//end onClick
+        });//end tvButtonQuantityAdd.setOnClickListener
+
+        tvButtonQuantitySubtract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQuantity = Integer.parseInt(etEditQuantity.getText().toString());
+                etEditQuantity.setText((currentQuantity - 1) + "");
+            }//end onClick
+        });//end tvButtonQuantitySubtract.setOnClickListener
+
+        tvButtonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeFragmentToViewItems();
+            }//end onClick
+        });
+
+        tvButtonSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = etEditName.getText().toString();
+                String category = etEditCategory.getText().toString();
+                String description = etEditDescription.getText().toString();
+                int quantity = Integer.parseInt(etEditQuantity.getText().toString());
+                boolean isFavorite = cbEditIsFavorite.isChecked();
+
+                item.setName(name);
+                item.setCategory(category);
+                item.setDescription(description);
+                item.setQuantity(quantity);
+                item.setFavorite(isFavorite);
+
+                item.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Log.d("save", "saved");
+                    }//end done
+                });//end item.saveInBackground
+
+                changeFragmentToViewItems();
+            }//end onClick
+        });//end tvButtonSubmit.setOnClickListener
+    }//end onViewCreated
+
+    private void changeFragmentToViewItems() {
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, new ViewItemsFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack("")
+                .commit();
+    }//end changeFragmentToViewItems method
 }//end EditItemFragment class

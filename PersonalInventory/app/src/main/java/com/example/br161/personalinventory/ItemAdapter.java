@@ -43,8 +43,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
                 Bundle bundle = new Bundle();
 
-                //TODO change to put the item
-                bundle.putInt("position", position);
+                bundle.putSerializable("item", items.get(position));
 
                 fragment.setArguments(bundle);
 

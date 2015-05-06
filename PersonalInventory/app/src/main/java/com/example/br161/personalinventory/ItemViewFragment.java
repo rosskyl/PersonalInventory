@@ -32,7 +32,7 @@ public class ItemViewFragment extends Fragment {
 
     private TextView tvDelete;
 
-    private ArrayList<Item> items;
+    private Item item;
 
     public ItemViewFragment() {
         // Required empty public constructor
@@ -42,7 +42,7 @@ public class ItemViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        items = ParseInventory.getAllItems();
+        item = (Item) getArguments().getSerializable("item");
     }//end onCreate method
 
     @Override
@@ -64,11 +64,11 @@ public class ItemViewFragment extends Fragment {
         tvEdit = (TextView) view.findViewById(R.id.tv_edit);
         tvDelete = (TextView) view.findViewById(R.id.tv_delete);
 
-        tvName.setText(items.get(getArguments().getInt("position")).getName());
-        tvQuantity.setText(items.get(getArguments().getInt("position")).getQuantity() + "");
-        tvCategory.setText(items.get(getArguments().getInt("position")).getCategory());
-        tvDescription.setText(items.get(getArguments().getInt("position")).getDescription());
-        cbFavorite.setChecked(items.get(getArguments().getInt("position")).isFavorite());
+        tvName.setText(item.getName());
+        tvQuantity.setText(item.getQuantity() + "");
+        tvCategory.setText(item.getCategory());
+        tvDescription.setText(item.getDescription());
+        cbFavorite.setChecked(item.isFavorite());
 
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +84,7 @@ public class ItemViewFragment extends Fragment {
 
                 Bundle bundle = new Bundle();
 
-                bundle.putSerializable("item", items.get(getArguments().getInt("position")));
+                bundle.putSerializable("item", item);
 
                 fragment.setArguments(bundle);
 
