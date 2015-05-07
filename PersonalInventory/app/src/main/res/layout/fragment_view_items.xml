@@ -30,7 +30,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/item_headings_quantity"
+            style="@style/item_headings"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 

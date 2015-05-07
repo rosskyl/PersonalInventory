@@ -43,17 +43,12 @@
         <item name="android:gravity">center</item>
         <item name="android:padding">@dimen/padding_text</item>
         <item name="android:textSize">@dimen/text_size_item</item>
-    </style>
-
-    <style name="item_item_quantity" parent="item_item">
-        <item name="android:layout_weight">1</item>
+        <item name="android:paddingRight">0dip</item>
+        <item name="android:layout_marginRight">0dip</item>
     </style>
 
     <style name="item_headings" parent="item_item">
         <item name="android:textSize">@dimen/text_size_heading</item>
     </style>
 
-    <style name="item_headings_quantity" parent="item_item">
-        <item name="android:layout_weight">2</item>
-    </style>
 </resources>

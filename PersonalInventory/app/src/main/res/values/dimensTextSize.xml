@@ -5,5 +5,5 @@
     <dimen name="text_size_button">18sp</dimen>
     <dimen name="text_size_drawer_item">13sp</dimen>
     <dimen name="text_size_item">12sp</dimen>
-    <dimen name="text_size_heading">14sp</dimen>
+    <dimen name="text_size_heading">13sp</dimen>
 </resources>
