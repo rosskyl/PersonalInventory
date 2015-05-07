@@ -16,10 +16,33 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="title_medium" parent="title">
+        <item name="android:textSize">@dimen/text_size_title_medium</item>
+    </style>
+
+    <style name="title_small" parent="title">
+        <item name="android:textSize">@dimen/text_size_title_small</item>
+    </style>
+
     <style name="button" parent="AppTheme">
         <item name="android:textSize">@dimen/text_size_button</item>
         <item name="android:padding">@dimen/padding_button</item>
         <item name="android:gravity">center</item>
+        <item name="android:layout_margin">@dimen/margin_button</item>
+    </style>
+
+    <style name="button_small" parent="AppTheme">
+        <item name="android:textSize">@dimen/text_size_button_small</item>
+    </style>
+
+    <style name="edit_text" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_edit_text</item>
+        <item name="android:layout_marginLeft">@dimen/margin_horizontal_edit_text</item>
+        <item name="android:layout_marginRight">@dimen/margin_horizontal_edit_text</item>
+        <item name="android:layout_marginTop">@dimen/margin_vertical_edit_text</item>
+        <item name="android:layout_marginBottom">@dimen/margin_vertical_edit_text</item>
     </style>
 
     <style name="drawer" parent="AppTheme">

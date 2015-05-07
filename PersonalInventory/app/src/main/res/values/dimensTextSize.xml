@@ -2,8 +2,12 @@
 <resources>
     <dimen name="text_size_drawer_instructions">15sp</dimen>
     <dimen name="text_size_title">25sp</dimen>
+    <dimen name="text_size_title_medium">19sp</dimen>
+    <dimen name="text_size_title_small">16sp</dimen>
     <dimen name="text_size_button">18sp</dimen>
-    <dimen name="text_size_drawer_item">13sp</dimen>
+    <dimen name="text_size_button_small">14sp</dimen>
+    <dimen name="text_size_drawer_item">14sp</dimen>
     <dimen name="text_size_item">12sp</dimen>
     <dimen name="text_size_heading">13sp</dimen>
+    <dimen name="text_size_edit_text">18sp</dimen>
 </resources>

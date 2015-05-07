@@ -19,37 +19,33 @@
 
     <EditText
         android:id="@+id/et_user_name"
-        android:layout_width="match_parent"
+        style="@style/edit_text"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:gravity="center"
         android:hint="@string/hint_user_name"/>
 
     <EditText
         android:id="@+id/et_password"
-        android:layout_width="match_parent"
+        style="@style/edit_text"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:hint="@string/hint_password"
         android:inputType="textPassword"/>
 
     <EditText
         android:id="@+id/et_password_confirm"
-        android:layout_width="match_parent"
+        style="@style/edit_text"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:hint="@string/hint_confirm_password"
         android:inputType="textPassword"
         android:visibility="gone"/>
 
     <EditText
         android:id="@+id/et_email"
-        android:layout_width="match_parent"
+        style="@style/edit_text"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
         android:visibility="gone"/>

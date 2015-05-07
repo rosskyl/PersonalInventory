@@ -7,9 +7,9 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_main_screen">MainScreenActivity</string>
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
-    <string name="title_activity_item_view">ItemViewActivity</string>
 
     <string name="login">Login</string>
+    <string name="edit_item">Edit item</string>
     <string name="forgot_password">Forgot password</string>
     <string name="favorite">Favorite</string>
     <string name="name">Name</string>

@@ -10,39 +10,37 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
+        style="@style/title"
         android:text="@string/instructions_add_item"/>
 
     <EditText
         android:id="@+id/et_name"
-        android:layout_width="wrap_content"
+        style="@style/edit_text"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:hint="@string/hint_name"/>
 
     <EditText
         android:id="@+id/et_category"
-        android:layout_width="wrap_content"
+        style="@style/edit_text"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:hint="@string/hint_category"/>
 
     <EditText
         android:id="@+id/et_quantity"
-        android:layout_width="wrap_content"
+        style="@style/edit_text"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:hint="@string/hint_quantity"
         android:inputType="number"/>
 
     <EditText
         android:id="@+id/et_description"
-        android:layout_width="wrap_content"
+        style="@style/edit_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:hint="@string/hint_description"/>
 
     <LinearLayout
@@ -52,21 +50,23 @@
 
         <TextView
             android:id="@+id/tv_button_cancel"
+            style="@style/button"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/button_cancel" />
+            android:text="@string/button_cancel"/>
 
         <TextView
             android:id="@+id/tv_button_submit"
+            style="@style/button"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/button_submit" />
+            android:text="@string/button_submit"/>
 
     </LinearLayout>
 
