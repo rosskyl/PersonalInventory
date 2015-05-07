@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import com.parse.ParseObject;
 import com.parse.ParsePush;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.parse.SignUpCallback;
 
 public class MainActivity extends Activity {
 
@@ -55,22 +53,6 @@ public class MainActivity extends Activity {
             }//end onClick
         });//tvLogout.setOnClickListener
 
-        //needed for using parse
-        ParseObject.registerSubclass(Item.class);
-        Parse.initialize(this, getString(R.string.application_ID), getString(R.string.client_key));
-
-        //needed for push notifications
-        ParsePush.subscribeInBackground("", new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e == null) {
-                    Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
-                } else {
-                    Log.e("com.parse.push", "failed to subscribe for push", e);
-                }//end else
-            }//end done
-        });//end ParsePush.subscribeInBackground
-
         checkUser();
     }//end onCreate method
 
@@ -87,4 +69,5 @@ public class MainActivity extends Activity {
             startActivity(intent);
         }//end else
     }//end checkUser method
+
 }//end MainActivity class

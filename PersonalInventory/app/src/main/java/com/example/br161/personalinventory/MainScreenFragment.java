@@ -103,9 +103,6 @@ public class MainScreenFragment extends Fragment {
             tvDrawerInstruction.setText(text);
             tvDrawerInstruction.setGravity(Gravity.LEFT);
         }//end if
-
-
-        //TODO update other paddings
     }//end updateDrawerInstructions method
 
 }//end MainScreenFragment class
