@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_submit">Submit</string>
+    <string name="button_new_user">Not already signed up? Sign up now</string>
+    <string name="button_continue_anon">Continue anonymously</string>
+    <string name="button_continue_to_app">Continue to app</string>
+    <string name="button_logout">Logout</string>
+    <string name="button_forgot_password">Forgot your password?</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_delete">Delete</string>
+    <string name="button_add_item">Add Item</string>
+    <string name="button_quantity_add_1">Add 1</string>
+    <string name="button_quantity_subtract_1">Subtract 1</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_confirm">Confirm</string>
+</resources>
