@@ -10,6 +10,7 @@
               tools:context="com.example.br161.personalinventory.LoginActivity">
 
     <TextView
+        style="@style/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -55,38 +56,38 @@
 
     <TextView
         android:id="@+id/tv_submit_login"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:padding="@dimen/padding_button"
         android:text="@string/button_submit"/>
 
     <TextView
         android:id="@+id/tv_submit_new_user"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:padding="@dimen/padding_button"
         android:text="@string/button_submit"
         android:visibility="gone"/>
 
     <TextView
         android:id="@+id/tv_new_user"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:padding="@dimen/padding_button"
         android:text="@string/button_new_user"/>
 
     <TextView
         android:id="@+id/tv_forgot_password"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:padding="@dimen/padding_button"
         android:text="@string/button_forgot_password"/>
 

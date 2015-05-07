@@ -2,7 +2,58 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+
     </style>
 
+    <style name="drawer_instruction" parent="AppTheme">
+        <item name="android:padding">@dimen/padding_text</item>
+        <item name="android:textSize">@dimen/text_size_drawer_instructions</item>
+    </style>
+
+    <style name="title" parent="AppTheme">
+        <item name="android:textSize">@dimen/text_size_title</item>
+        <item name="android:padding">@dimen/padding_text_title</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="button" parent="AppTheme">
+        <item name="android:textSize">@dimen/text_size_button</item>
+        <item name="android:padding">@dimen/padding_button</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="drawer" parent="AppTheme">
+        <item name="android:layout_marginTop">@dimen/margin_drawer</item>
+        <item name="android:background">@color/background_drawer</item>
+        <item name="android:divider">@color/divider</item>
+        <item name="android:dividerHeight">@dimen/divider_height</item>
+        <item name="android:padding">@dimen/padding_drawer</item>
+    </style>
+
+    <style name="drawer_item" parent="AppTheme">
+        <item name="android:textSize">@dimen/text_size_drawer_item</item>
+        <item name="android:padding">@dimen/padding_text</item>
+        <item name="android:layout_marginLeft">@dimen/margin_left_drawer_item</item>
+    </style>
+
+    <style name="item_item" parent="AppTheme">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/padding_text</item>
+        <item name="android:textSize">@dimen/text_size_item</item>
+    </style>
+
+    <style name="item_item_quantity" parent="item_item">
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="item_headings" parent="item_item">
+        <item name="android:textSize">@dimen/text_size_heading</item>
+    </style>
+
+    <style name="item_headings_quantity" parent="item_item">
+        <item name="android:layout_weight">2</item>
+    </style>
 </resources>

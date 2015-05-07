@@ -15,11 +15,7 @@
         android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#333"
-        android:choiceMode="singleChoice"
-        android:divider="#666"
-        android:dividerHeight="1dip"
-        android:paddingLeft="15sp"
-        android:paddingRight="15sp" />
+        style="@style/drawer"
+        android:choiceMode="singleChoice" />
 
 </android.support.v4.widget.DrawerLayout>

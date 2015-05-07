@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        style="@style/title"
         android:text="@string/app_name" />
 
     <TextView
@@ -21,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="@dimen/padding_button"
+        style="@style/button"
         android:text="@string/button_continue_to_app" />
 
     <TextView
@@ -29,6 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="@dimen/padding_button"
+        style="@style/button"
         android:text="@string/button_logout" />
 </LinearLayout>

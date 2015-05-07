@@ -10,20 +10,15 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="0dip"
+            style="@style/item_headings"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_header_name"
-                android:layout_width="wrap_content"
+                style="@style/item_headings"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="name"/>
+                android:text="@string/name"/>
 
             <ImageView
                 android:id="@+id/iv_name_sort"
@@ -35,20 +30,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dip"
+            style="@style/item_headings_quantity"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_header_quantity"
-                android:layout_width="wrap_content"
+                style="@style/item_headings"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="quantity"/>
+                android:text="@string/quantity"/>
 
             <ImageView
                 android:id="@+id/iv_quantity_sort"
@@ -60,20 +50,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dip"
+            style="@style/item_headings"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_header_category"
-                android:layout_width="wrap_content"
+                style="@style/item_headings"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="category"/>
+                android:text="@string/category"/>
 
             <ImageView
                 android:id="@+id/iv_category_sort"
@@ -85,11 +70,8 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="0dip"
+            style="@style/item_headings"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="2"
-            android:gravity="center"
             android:text="@string/favorite"/>
 
     </LinearLayout>
