@@ -2,13 +2,13 @@ package com.example.br161.personalinventory;
 
 import java.util.Comparator;
 /**
- * Created by Kyle on 5/1/2015.
+ * Created by Kyle on 5/8/2015.
  */
-public class ItemCategoryComparator implements Comparator<Item> {
+public class ItemFavoriteComparator implements Comparator<Item> {
     /**
      * Compares the two specified objects to determine their relative ordering. The ordering
      * implied by the return value of this method for all possible pairs of
-     * {@code (item1, item2)} should form an <i>equivalence relation</i>.
+     * {@code (lhs, rhs)} should form an <i>equivalence relation</i>.
      * This means that
      * <ul>
      * <li>{@code compare(a, a)} returns zero for all {@code a}</li>
@@ -20,13 +20,18 @@ public class ItemCategoryComparator implements Comparator<Item> {
      * </ul>
      *
      * @param item1 an {@code Object}.
-     * @param item2 a second {@code Object} to compare with {@code item1}.
-     * @return an integer < 0 if {@code item1} is less than {@code item2}, 0 if they are
-     * equal, and > 0 if {@code item1} is greater than {@code item2}.
+     * @param item2 a second {@code Object} to compare with {@code lhs}.
+     * @return an integer < 0 if {@code lhs} is less than {@code rhs}, 0 if they are
+     * equal, and > 0 if {@code lhs} is greater than {@code rhs}.
      * @throws ClassCastException if objects are not of the correct type.
      */
     @Override
     public int compare(Item item1, Item item2) {
-        return item1.getCategory().compareToIgnoreCase(item2.getCategory());
+        if (item1.isFavorite() && !(item2.isFavorite()))
+            return -1;
+        else if (!(item1.isFavorite()) && item2.isFavorite())
+            return 1;
+        else
+            return 0;
     }//end compare method
-}//end ItemCategoryComparator class
+}//end ItemFavoriteComparator class

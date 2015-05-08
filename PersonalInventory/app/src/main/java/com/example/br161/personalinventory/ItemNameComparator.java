@@ -28,11 +28,6 @@ public class ItemNameComparator implements Comparator<Item> {
      */
     @Override
     public int compare(Item item1, Item item2) {
-        if (item1.isFavorite() && !(item2.isFavorite()))
-            return -1;
-        else if (!(item1.isFavorite()) && item2.isFavorite())
-            return 1;
-        else
-            return item1.getName().compareToIgnoreCase(item2.getName());
+        return item1.getName().compareToIgnoreCase(item2.getName());
     }//end compare method
 }//end ItemNameComparator

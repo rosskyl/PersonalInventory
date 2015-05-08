@@ -29,6 +29,8 @@ public class ViewItemsFragment extends Fragment {
 
     private TextView tvHeadingQuantity;
 
+    private TextView tvHeadingFavorite;
+
     private RecyclerView recyclerItems;
 
     private ProgressBar progressBar;
@@ -38,6 +40,8 @@ public class ViewItemsFragment extends Fragment {
     private ImageView ivQuantitySort;
 
     private ImageView ivCategorySort;
+
+    private ImageView ivFavoriteSort;
 
     private ItemAdapter adapter;
 
@@ -60,12 +64,13 @@ public class ViewItemsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sort = new int[3];//0 if not sorted, 1 if sorted ascending and -1 if descending
+        sort = new int[4];//0 if not sorted, 1 if sorted ascending and -1 if descending
 
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         sort[0] = preferences.getInt("nameSort", 1);//sorted by name
         sort[1] = preferences.getInt("quantitySort", 0);//sorted by quantity
         sort[2] = preferences.getInt("categorySort", 0);//sorted by category
+        sort[3] = preferences.getInt("favoriteSort", 0);//sorted by favorite
     }//end onCreate method
 
     @Override
@@ -76,10 +81,12 @@ public class ViewItemsFragment extends Fragment {
         tvHeadingName = (TextView) view.findViewById(R.id.tv_header_name);
         tvHeadingCategory = (TextView) view.findViewById(R.id.tv_header_category);
         tvHeadingQuantity = (TextView) view.findViewById(R.id.tv_header_quantity);
+        tvHeadingFavorite = (TextView) view.findViewById(R.id.tv_header_favorite);
         progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         ivNameSort = (ImageView) view.findViewById(R.id.iv_name_sort);
         ivCategorySort = (ImageView) view.findViewById(R.id.iv_category_sort);
         ivQuantitySort = (ImageView) view.findViewById(R.id.iv_quantity_sort);
+        ivFavoriteSort = (ImageView) view.findViewById(R.id.iv_favorite_sort);
 
         new LoadItemsTask().execute();
     }//end onViewCreated method
@@ -94,6 +101,7 @@ public class ViewItemsFragment extends Fragment {
         editor.putInt("nameSort", sort[0]);
         editor.putInt("quantitySort", sort[1]);
         editor.putInt("categorySort", sort[2]);
+        editor.putInt("favoriteSort", sort[3]);
 
         editor.commit();
     }//end onDestroy method
@@ -107,7 +115,7 @@ public class ViewItemsFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                     sort[0] = -1;
                     ivNameSort.setVisibility(View.VISIBLE);
-                    ivNameSort.setImageResource(R.drawable.ic_keyboard_arrow_down_black_18dp);
+                    ivNameSort.setImageResource(R.drawable.ic_arrow_drop_down_white_18dp);
                 }//end if
                 else {
                     Collections.sort(items, new ItemNameComparator());
@@ -116,9 +124,10 @@ public class ViewItemsFragment extends Fragment {
                     sort[1] = 0;
                     sort[2] = 0;
                     ivNameSort.setVisibility(View.VISIBLE);
-                    ivNameSort.setImageResource(R.drawable.ic_keyboard_arrow_up_black_18dp);
+                    ivNameSort.setImageResource(R.drawable.ic_arrow_drop_up_white_18dp);
                     ivQuantitySort.setVisibility(View.INVISIBLE);
                     ivCategorySort.setVisibility(View.INVISIBLE);
+                    ivFavoriteSort.setVisibility(View.INVISIBLE);
                 }//end else
             }//end onCLick
         });//end tvHeadingName.setOnClickListener
@@ -131,7 +140,7 @@ public class ViewItemsFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                     sort[1] = -1;
                     ivQuantitySort.setVisibility(View.VISIBLE);
-                    ivQuantitySort.setImageResource(R.drawable.ic_keyboard_arrow_down_black_18dp);
+                    ivQuantitySort.setImageResource(R.drawable.ic_arrow_drop_down_white_18dp);
                 }//end if
                 else {
                     Collections.sort(items, new ItemQuantityComparator());
@@ -140,9 +149,10 @@ public class ViewItemsFragment extends Fragment {
                     sort[1] = 1;
                     sort[2] = 0;
                     ivQuantitySort.setVisibility(View.VISIBLE);
-                    ivQuantitySort.setImageResource(R.drawable.ic_keyboard_arrow_up_black_18dp);
+                    ivQuantitySort.setImageResource(R.drawable.ic_arrow_drop_up_white_18dp);
                     ivNameSort.setVisibility(View.INVISIBLE);
                     ivCategorySort.setVisibility(View.INVISIBLE);
+                    ivFavoriteSort.setVisibility(View.INVISIBLE);
                 }//end else
             }//end onCLick
         });//end tvHeadingQuantity.setOnClickListener
@@ -155,7 +165,7 @@ public class ViewItemsFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                     sort[2] = -1;
                     ivCategorySort.setVisibility(View.VISIBLE);
-                    ivCategorySort.setImageResource(R.drawable.ic_keyboard_arrow_down_black_18dp);
+                    ivCategorySort.setImageResource(R.drawable.ic_arrow_drop_down_white_18dp);
                 }//end if
                 else {
                     Collections.sort(items, new ItemCategoryComparator());
@@ -164,12 +174,39 @@ public class ViewItemsFragment extends Fragment {
                     sort[1] = 0;
                     sort[2] = 1;
                     ivCategorySort.setVisibility(View.VISIBLE);
-                    ivCategorySort.setImageResource(R.drawable.ic_keyboard_arrow_up_black_18dp);
+                    ivCategorySort.setImageResource(R.drawable.ic_arrow_drop_up_white_18dp);
                     ivNameSort.setVisibility(View.INVISIBLE);
                     ivQuantitySort.setVisibility(View.INVISIBLE);
+                    ivFavoriteSort.setVisibility(View.INVISIBLE);
                 }//end else
             }//end onCLick
         });//end tvHeadingCategory.setOnClickListener
+
+        tvHeadingFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sort[3] == 1) {
+                    Collections.sort(items, Collections.reverseOrder(new ItemFavoriteComparator()));
+                    adapter.notifyDataSetChanged();
+                    sort[3] = -1;
+                    ivFavoriteSort.setVisibility(View.VISIBLE);
+                    ivFavoriteSort.setImageResource(R.drawable.ic_arrow_drop_down_white_18dp);
+                }//end if
+                else {
+                    Collections.sort(items, new ItemFavoriteComparator());
+                    adapter.notifyDataSetChanged();
+                    sort[0] = 0;
+                    sort[1] = 0;
+                    sort[2] = 0;
+                    sort[3] = 1;
+                    ivFavoriteSort.setVisibility(View.VISIBLE);
+                    ivFavoriteSort.setImageResource(R.drawable.ic_arrow_drop_up_white_18dp);
+                    ivNameSort.setVisibility(View.INVISIBLE);
+                    ivQuantitySort.setVisibility(View.INVISIBLE);
+                    ivCategorySort.setVisibility(View.INVISIBLE);
+                }//end else
+            }//end onCLick
+        });//end tvHeadingFavorite.setOnClickListener
     }//end setUpOnClickListeners method
 
     class LoadItemsTask extends AsyncTask<Void, Void, Void> {
@@ -185,6 +222,47 @@ public class ViewItemsFragment extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
+            if (sort[0] == 1) {
+                Collections.sort(items, new ItemNameComparator());
+                ivNameSort.setVisibility(View.VISIBLE);
+                ivNameSort.setImageResource(R.drawable.ic_arrow_drop_up_white_18dp);
+            }//end if
+            else if (sort[0] == -1) {
+                Collections.sort(items, Collections.reverseOrder(new ItemNameComparator()));
+                ivNameSort.setVisibility(View.VISIBLE);
+                ivNameSort.setImageResource(R.drawable.ic_arrow_drop_down_white_18dp);
+            }//end else if
+            else if (sort[1] == 1) {
+                Collections.sort(items, new ItemQuantityComparator());
+                ivQuantitySort.setVisibility(View.VISIBLE);
+                ivQuantitySort.setImageResource(R.drawable.ic_arrow_drop_up_white_18dp);
+            }//end else if
+            else if (sort[1] == -1) {
+                Collections.sort(items, Collections.reverseOrder(new ItemQuantityComparator()));
+                ivQuantitySort.setVisibility(View.VISIBLE);
+                ivQuantitySort.setImageResource(R.drawable.ic_arrow_drop_down_white_18dp);
+            }//end else if
+            else if (sort[2] == 1) {
+                Collections.sort(items, new ItemCategoryComparator());
+                ivCategorySort.setVisibility(View.VISIBLE);
+                ivCategorySort.setImageResource(R.drawable.ic_arrow_drop_up_white_18dp);
+            }//end else if
+            else if (sort[2] == -1) {
+                Collections.sort(items, Collections.reverseOrder(new ItemCategoryComparator()));
+                ivCategorySort.setVisibility(View.VISIBLE);
+                ivCategorySort.setImageResource(R.drawable.ic_arrow_drop_down_white_18dp);
+            }//end else if
+            else if (sort[3] == 1) {
+                Collections.sort(items, new ItemFavoriteComparator());
+                ivFavoriteSort.setVisibility(View.VISIBLE);
+                ivFavoriteSort.setImageResource(R.drawable.ic_arrow_drop_up_white_18dp);
+            }//end else if
+            else if (sort[3] == -1) {
+                Collections.sort(items, Collections.reverseOrder(new ItemFavoriteComparator()));
+                ivFavoriteSort.setVisibility(View.VISIBLE);
+                ivFavoriteSort.setImageResource(R.drawable.ic_arrow_drop_down_white_18dp);
+            }//end else if
+
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
             recyclerItems.setLayoutManager(layoutManager);
@@ -194,37 +272,6 @@ public class ViewItemsFragment extends Fragment {
 
             recyclerItems.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-
-            if (sort[0] == 1) {
-                Collections.sort(items, new ItemNameComparator());
-                ivNameSort.setVisibility(View.VISIBLE);
-                ivNameSort.setImageResource(R.drawable.ic_keyboard_arrow_up_black_18dp);
-            }//end if
-            else if (sort[0] == -1) {
-                Collections.sort(items, Collections.reverseOrder(new ItemNameComparator()));
-                ivNameSort.setVisibility(View.VISIBLE);
-                ivNameSort.setImageResource(R.drawable.ic_keyboard_arrow_down_black_18dp);
-            }//end else if
-            else if (sort[1] == 1) {
-                Collections.sort(items, new ItemQuantityComparator());
-                ivQuantitySort.setVisibility(View.VISIBLE);
-                ivQuantitySort.setImageResource(R.drawable.ic_keyboard_arrow_up_black_18dp);
-            }//end else if
-            else if (sort[1] == -1) {
-                Collections.sort(items, Collections.reverseOrder(new ItemQuantityComparator()));
-                ivQuantitySort.setVisibility(View.VISIBLE);
-                ivQuantitySort.setImageResource(R.drawable.ic_keyboard_arrow_down_black_18dp);
-            }//end else if
-            else if (sort[2] == 1) {
-                Collections.sort(items, new ItemCategoryComparator());
-                ivCategorySort.setVisibility(View.VISIBLE);
-                ivCategorySort.setImageResource(R.drawable.ic_keyboard_arrow_up_black_18dp);
-            }//end else if
-            else if (sort[2] == -1) {
-                Collections.sort(items, Collections.reverseOrder(new ItemCategoryComparator()));
-                ivCategorySort.setVisibility(View.VISIBLE);
-                ivCategorySort.setImageResource(R.drawable.ic_keyboard_arrow_down_black_18dp);
-            }//end else if
 
             setUpOnClickListeners();
         }//end onPostExecute method

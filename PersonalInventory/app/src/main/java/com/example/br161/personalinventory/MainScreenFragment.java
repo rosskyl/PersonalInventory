@@ -1,13 +1,11 @@
 package com.example.br161.personalinventory;
 
 
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
-
-import java.util.ArrayList;
 
 
 /**
@@ -48,7 +44,7 @@ public class MainScreenFragment extends Fragment {
         tvDrawerInstruction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ( (MainScreenActivity) getActivity()).updateDrawer();
+                ((MainScreenActivity) getActivity()).updateDrawer();
             }//end onClick
         });//end tvDrawerInstruction.setOnClickListener
 
@@ -95,14 +91,7 @@ public class MainScreenFragment extends Fragment {
     }//end updateFragment method
 
     public void updateDrawerInstructions(String text) {
-        if (text.equals(getString(R.string.drawer_close))) {
-            tvDrawerInstruction.setText(text);
-            tvDrawerInstruction.setGravity(Gravity.RIGHT);
-        }//end if
-        else if (text.equals(getString(R.string.drawer_open))) {
-            tvDrawerInstruction.setText(text);
-            tvDrawerInstruction.setGravity(Gravity.LEFT);
-        }//end if
+        tvDrawerInstruction.setText(text);
     }//end updateDrawerInstructions method
 
 }//end MainScreenFragment class

@@ -27,17 +27,11 @@ public class ItemQuantityComparator implements Comparator<Item> {
      */
     @Override
     public int compare(Item item1, Item item2) {
-        if (item1.isFavorite() && !(item2.isFavorite()))
+        if (item1.getQuantity() < item2.getQuantity())
             return -1;
-        else if (!(item1.isFavorite()) && item2.isFavorite())
+        else if (item1.getQuantity() > item2.getQuantity())
             return 1;
-        else {
-            if (item1.getQuantity() < item2.getQuantity())
-                return -1;
-            else if (item1.getQuantity() > item2.getQuantity())
-                return 1;
-            else
-                return 0;
-        }//end else
+        else
+            return 0;
     }//end compare method
 }//end ItemQuantityComparator class
