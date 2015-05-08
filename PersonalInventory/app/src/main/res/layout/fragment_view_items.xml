@@ -24,6 +24,7 @@
                 android:id="@+id/iv_name_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/primary_dark"
                 android:src="@drawable/ic_keyboard_arrow_down_black_18dp"
                 android:visibility="invisible"/>
 
@@ -44,6 +45,7 @@
                 android:id="@+id/iv_quantity_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/primary_dark"
                 android:src="@drawable/ic_keyboard_arrow_down_black_18dp"
                 android:visibility="invisible"/>
 
@@ -64,15 +66,31 @@
                 android:id="@+id/iv_category_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/primary_dark"
                 android:src="@drawable/ic_keyboard_arrow_down_black_18dp"
                 android:visibility="invisible"/>
 
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
             style="@style/item_headings"
             android:layout_height="wrap_content"
-            android:text="@string/favorite"/>
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/item_headings"
+                android:layout_height="wrap_content"
+                android:text="@string/favorite"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary_dark"
+                android:src="@drawable/ic_keyboard_arrow_down_black_18dp"
+                android:visibility="invisible"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

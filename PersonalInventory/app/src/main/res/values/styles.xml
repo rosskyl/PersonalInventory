@@ -2,12 +2,16 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-
+        <item name="android:background">@color/primary_light</item>
+        <item name="android:textColor">@color/text_dark</item>
     </style>
 
     <style name="drawer_instruction" parent="AppTheme">
         <item name="android:padding">@dimen/padding_text</item>
         <item name="android:textSize">@dimen/text_size_drawer_instructions</item>
+        <item name="android:background">@color/other</item>
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:layout_height">@dimen/margin_drawer</item>
     </style>
 
     <style name="title" parent="AppTheme">
@@ -29,6 +33,7 @@
         <item name="android:padding">@dimen/padding_button</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_margin">@dimen/margin_button</item>
+        <item name="android:background">@color/secondary</item>
     </style>
 
     <style name="button_small" parent="AppTheme">
@@ -43,12 +48,13 @@
         <item name="android:layout_marginRight">@dimen/margin_horizontal_edit_text</item>
         <item name="android:layout_marginTop">@dimen/margin_vertical_edit_text</item>
         <item name="android:layout_marginBottom">@dimen/margin_vertical_edit_text</item>
+        <item name="android:background">#FFF</item>
     </style>
 
     <style name="drawer" parent="AppTheme">
         <item name="android:layout_marginTop">@dimen/margin_drawer</item>
-        <item name="android:background">@color/background_drawer</item>
-        <item name="android:divider">@color/divider</item>
+        <item name="android:background">@color/primary_dark</item>
+        <item name="android:divider">@color/primary_light</item>
         <item name="android:dividerHeight">@dimen/divider_height</item>
         <item name="android:padding">@dimen/padding_drawer</item>
     </style>
@@ -57,6 +63,8 @@
         <item name="android:textSize">@dimen/text_size_drawer_item</item>
         <item name="android:padding">@dimen/padding_text</item>
         <item name="android:layout_marginLeft">@dimen/margin_left_drawer_item</item>
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:background">@color/other</item>
     </style>
 
     <style name="item_item" parent="AppTheme">
@@ -68,10 +76,13 @@
         <item name="android:textSize">@dimen/text_size_item</item>
         <item name="android:paddingRight">0dip</item>
         <item name="android:layout_marginRight">0dip</item>
+        <item name="android:background">@color/primary_medium</item>
     </style>
 
     <style name="item_headings" parent="item_item">
         <item name="android:textSize">@dimen/text_size_heading</item>
+        <item name="android:background">@color/primary_dark</item>
+        <item name="android:textColor">@color/text_light</item>
     </style>
 
 </resources>

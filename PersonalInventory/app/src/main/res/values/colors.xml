@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background_drawer">#333</color>
-    <color name="divider">#666</color>
+    <color name="primary_dark">#24476B</color>
+    <color name="primary_medium">#7094DB</color>
+    <color name="primary_light">#C2FFE0</color>
+    <color name="secondary">#FFCC66</color>
+    <color name="other">#663366</color>
+
+    <color name="text_light">#FFF</color>
+    <color name="text_dark">#000</color>
 </resources>
