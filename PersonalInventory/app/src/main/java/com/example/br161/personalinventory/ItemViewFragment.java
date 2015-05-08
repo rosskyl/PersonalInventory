@@ -4,10 +4,12 @@ package com.example.br161.personalinventory;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -99,5 +101,13 @@ public class ItemViewFragment extends Fragment {
                         .commit();
             }//end onClick
         });//end tvEdit.setOnClickListener
+
+        cbFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                item.setFavorite(isChecked);
+                item.saveInBackground();
+            }//end onCheckedChanged
+        });//end cbFavorite.setOnCheckedChangeListener
     }//end onViewCreated
 }//end ItemViewFragment class

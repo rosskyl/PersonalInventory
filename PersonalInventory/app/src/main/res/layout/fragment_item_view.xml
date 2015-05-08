@@ -79,12 +79,11 @@
 
     <CheckBox
         android:id="@+id/cb_favorite"
-        style="@style/button_small"
+        style="@style/check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-       android:clickable="false"
         android:text="@string/favorite"/>
 
     <LinearLayout

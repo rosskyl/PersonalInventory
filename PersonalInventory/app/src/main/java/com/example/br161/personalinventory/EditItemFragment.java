@@ -117,6 +117,8 @@ public class EditItemFragment extends Fragment {
                 item.setQuantity(quantity);
                 item.setFavorite(isFavorite);
 
+                item.saveInBackground();
+
                 changeFragmentToViewItems();
             }//end onClick
         });//end tvButtonSubmit.setOnClickListener

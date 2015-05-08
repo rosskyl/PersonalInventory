@@ -102,7 +102,7 @@
 
     <CheckBox
         android:id="@+id/cb_edit_favorite"
-        style="@style/button_small"
+        style="@style/check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

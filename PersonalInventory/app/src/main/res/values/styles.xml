@@ -36,8 +36,12 @@
         <item name="android:background">@color/secondary</item>
     </style>
 
-    <style name="button_small" parent="AppTheme">
+    <style name="button_small" parent="button">
         <item name="android:textSize">@dimen/text_size_button_small</item>
+    </style>
+
+    <style name="check_box" parent="button_small">
+        <item name="android:background">@color/primary_light</item>
     </style>
 
     <style name="edit_text" parent="AppTheme">
