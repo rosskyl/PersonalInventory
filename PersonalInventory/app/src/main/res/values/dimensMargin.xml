@@ -5,6 +5,6 @@
     <dimen name="margin_button">10dip</dimen>
     <dimen name="margin_horizontal_edit_text">16dip</dimen>\
     <dimen name="margin_vertical_edit_text">5dip</dimen>
-    <dimen name="margin_vertical_item">5dip</dimen>
+    <dimen name="margin_vertical_item">2dip</dimen>
     <dimen name="margin_horizontal_item">5dip</dimen>
 </resources>

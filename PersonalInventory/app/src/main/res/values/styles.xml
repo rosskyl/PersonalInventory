@@ -64,7 +64,7 @@
         <item name="android:padding">@dimen/padding_text</item>
         <item name="android:layout_marginLeft">@dimen/margin_left_drawer_item</item>
         <item name="android:textColor">@color/text_light</item>
-        <item name="android:background">@color/other</item>
+        <item name="android:background">@color/primary_dark</item>
     </style>
 
     <style name="item_item" parent="AppTheme">
