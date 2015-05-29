@@ -15,6 +15,10 @@ import android.widget.Toast;
 
 import com.parse.ParseUser;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +46,11 @@ public class MainScreenFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         tvDrawerInstruction = (TextView) view.findViewById(R.id.tv_drawer_instruction);
+
+        AdView mAdView = (AdView) view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
 
         tvDrawerInstruction.setOnClickListener(new View.OnClickListener() {
             @Override
